@@ -1,4 +1,4 @@
---Notice that in this code we use the BEHVAIORAL MODEL". This is why we call a "process" instead of "component-portmap"
+--Notice that in this code we use the BEHAVIORAL MODEL". This is why we call a "process" instead of "component-portmap"
 
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
@@ -33,7 +33,7 @@ architecture Behavioral of my_alu is
                                 
                                 case Opcode is                          --In this case Entity "Opcode" is just the left 4-bit binary value on the left 
                                 
-                                        when "0000" => alu_out <= inputA + inputB;      --This is the first output. We created a 4-bit artifical number 
+                                        when "0000" => alu_out <= inputA + inputB;      --This is the first output. We created a 4-bit artificial number 
                                         when "0001" => alu_out <= inputA - inputB;      --Notice in this case the Entity "opcode" is "0001". Also this subtraction
 
                                         when "0010" => alu_out <= inputA + "0001";       -- Notice that in this case we add a "1", but, it is not in integer form, it is in binary form
@@ -63,7 +63,7 @@ architecture Behavioral of my_alu is
                                         when "1110" => alu_out <= inputA NAND inputB;                   --Same with "NAND"
                                         when "1111" => alu_out <= inputA NOR inputB;                     --SAME with "NOR"
 
-                                        when others => alu_out <= "0000";       --This is just a part of the multiplexer that always has to be there.For everyhing else the output defaults to "0"
+                                        when others => alu_out <= "0000";       --This is just a part of the multiplexer that always has to be there.For everything else the output defaults to "0"
                                 end case;
                                 
                                 
