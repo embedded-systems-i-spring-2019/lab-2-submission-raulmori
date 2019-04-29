@@ -1,4 +1,5 @@
 --Basically what we do here is we make a Main circuit, and we create a "structure model" then we use port-maps to connect four single "ALU's"
+
 --Remember the way this works is, we will first set up the "SWITCHES" for out 4-bit number then press the "BUTTON" for "A"
 --We will then do the same for "B"
 --we will then set up the "OPCODE" code using the "SWITCHES" then we will press the "OPCODE" button which will give us the final OUTPUT results on the "LED's
@@ -6,7 +7,9 @@
 
 --Remember the same registers work for both the "BUTTONS" and "SWITCHES"
 --In here we assign the "OUTPUTS" of the ALU to the "LED's"
---Also, here we assign the 
+--Also, here we assign the "A", "B", "OPCODE" and "RESET" to the BUTTONS
+--we assign the 4-bit number to the "SWITCHES"
+
 
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
