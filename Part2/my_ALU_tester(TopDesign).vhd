@@ -34,62 +34,52 @@ end alu_tester;
 architecture Behavioral of alu_tester is         --We will use structural behavior
 
             signal db_btn : std_logic_vector(3 downto 0);
-            signal inA, inB, OP, led_out : std_logic_vector(3 downto 0);
-            signal tempA, tempB, tempOP : std_logic_vector(3 downto 0);
+            signal inA, inB, OP, led_out : std_logic_vector(3 downto 0);    --This is the TEMPORARY of the 4 "BUTTONS"
+            signal tempA, tempB, tempOP : std_logic_vector(3 downto 0);     --this is the TEMPORARY for the 4-bit number of the "SWITCHES"
             signal test : integer;
-
-
+            
+------------------------------------------------------------------------
             component my_alu         --This calls the individual "my_alu"'s 
               Port (A, B, Opcode: in std_logic_vector(3 downto 0);      --Notice that because we have 4-bit inputs and outputs we will call "my_alu" four times
                     output: out std_logic_vector(3 downto 0) );
             end component;
-
+------------------------------------------------------------------------
             component debounce          --This is the debounced clock
               Port (clk: in std_logic;
                     btn: in std_logic;
                     dbnc: out std_logic );
             end component;
-
-
+------------------------------------------------------------------------
 
             begin                   --portmap
-
                     process(clk)              --This is the process for making the switches work
                         begin
-                      
-                        if(rising_edge(clk)) then           --on rising edge clock 
-                                   
-                            if(db_btn(2) = '1') then         --check if logic true then, declare respective loads
-                                tempOP <= sw;               --load opcode  
+                            if(rising_edge(clk)) then           --on rising edge clock     
+                                if(db_btn(2) = '1') then         --check if logic true then, declare respective loads
+                                    tempOP <= sw;               --load opcode  
+                                end if;
+                                ------------------
+                                if(db_btn(1) = '1') then          --loadA
+                                    tempA <= sw;                 --report "in A";
+                                end if;
+                                -----------------
+                                if(db_btn(0) = '1') then         --loadB    
+                                    tempB <= sw;                    --report "in B";
+                                end if;
+                                 -----------------
+                                if(db_btn(3) = '1') then             --reset values   
+                                    tempA <= "0000";                --This just sets all the inputs to "0"
+                                    tempB <= "0000";
+                                    tempOP <= "0000";
+                                end if;    
                             end if;
-                            
-                            
-                            if(db_btn(1) = '1') then          --loadA
-                                tempA <= sw;                 --report "in A";
-                           end if;
-                           
-                           
-                            if(db_btn(0) = '1') then         --loadB    
-                                tempB <= sw;                    --report "in B";
-                            end if;
-                            
-                            
-                            if(db_btn(3) = '1') then             --reset values   
-                                tempA <= "0000";                --This just sets all the inputs to "0"
-                                tempB <= "0000";
-                                tempOP <= "0000";
-                            end if;
-                            
-                         end if;
-                        
                    end process;
                    
-               
                    inA <= tempA;        --Here we just connect a temporary "inA" into another temporary "tempA"
                    inB <= tempB;
                    OP <= tempOP;     
   
-    
+  
                     --opcode                
                     Button2: debounce port map(clk => clk,      --We just connect the component-entity with the corresponding temporary signal (small to big)
                                                btn => btn(2),
