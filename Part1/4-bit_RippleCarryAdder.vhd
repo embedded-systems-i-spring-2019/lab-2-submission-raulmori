@@ -24,27 +24,27 @@ end ripple_adder;
 architecture Behavioral of ripple_adder is
 
         signal C_out: std_logic_vector(3 downto 0) := (others => '0');          --Remember the semicolon at the end of a temporary signal
-        
-    
-        component adder             --declare component
-              Port (A, B, Cin: in std_logic;
-                     S, Cout: out std_logic );
+        ---------------------------------------------
+        component adder             --Here we call the "SINGLE-BIT FULL-ADDER"
+              Port (
+                    A, B   : in std_logic;
+                    Cin    : in std_logic;
+                    S, Cout: out std_logic 
+                    );
         end component;
-    
-    
+        ---------------------------------------------
         begin
                         --When working with STRUCTURAL DESIGN,it is just about the hierarchy of connecting Entity-Component values to Main-Entity values (Regardless of logical order)
                          --Since this is not about order calculation, it does not matter if the Full Adder's calculation is done first, before the values are transferred
                         --Remember we assign something small into something bigger (Component-Entity to Main-Entity)bookie216
-                        
-        
+              
             Adder_1 : adder port map(A => A(0),         --Here we pass the Ripple Adder's Entity 0th-bit "A" in the Entity-Component "A"
                                      B => B(0),         --Here we pass the Ripple Adder's Entity 0th-bit "B" in the Entity-Component "B"
                                      Cin => Cin,        --Remember this is  the Ripple Adder's "Cin" being put into the Entity-Component "Cin" 
                                      Cout => C_out(0),      --Here we pass the Entity 4-bit "Cout" into the temporary 1-bit "Cout" for the 0-bit position
                                      S => S(0));        --This just means that the entity 4-bit "S" will be equal to temporary 0th bit "S"
                                 
-                                     
+--Remember that the labeling of these combonents may not look exactly the same as the Labeling of the DIAGRAM in the LAB-Instructions                          
             Adder_2 : adder port map(A => A(1),     --Notice here that we take the 1th bit of Entity "A"
                                      B => B(1),
                                      Cin => C_out(0),   --This just connects he 0th-bit "Cout" of the Full-Adder#1 in the "Cin" of Full-Adder#2
@@ -63,9 +63,8 @@ architecture Behavioral of ripple_adder is
                                      Cin => C_out(2),
                                      Cout => C_out(3),      --Here We assigned the entity-component of Full-Adder#4 into Ripple-Carry Entity's 3rd bit "C_out(3)
                                      S => S(3));
-        
-        
-        Cout <= C_out(3);    --In this case since we dont need any more Full-Adders, we simply pass the temporary "Cout(3)" into the Main-Entity "Cout"
+                  
+                                     Cout <= C_out(3);    --In this case since we dont need any more Full-Adders, we simply pass the temporary "Cout(3)" into the Main-Entity "Cout"
     
 
 end Behavioral;
