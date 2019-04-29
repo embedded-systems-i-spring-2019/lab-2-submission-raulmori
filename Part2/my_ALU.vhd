@@ -1,6 +1,8 @@
 --Notice that in this code we use the BEHAVIORAL MODEL". This is why we call a "process" instead of "component-portmap"
 --We use the MULTIPLEXER model
 
+--The way this model works is that 
+
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
@@ -15,8 +17,8 @@ use IEEE.NUMERIC_STD.ALL;
 
 entity my_alu is
         Port (
-             A, B, Opcode: in  std_logic_vector(3 downto 0);  --Remember that we were given an input template. We use this template to make out 4-bt ALU
-             output      : out std_logic_vector(3 downto 0)
+             A, B, Opcode: in  std_logic_vector(3 downto 0);  --Here the "INPUTS" will be the "BUTTONS". They are assigned theough the individual Button Designs. Remember that we were given an input template. We use this template to make out 4-bt ALU
+             output      : out std_logic_vector(3 downto 0)     --The "OUTPUTS" are the "LED's". Since we have 4-bits, we have 4 "LED's"
               );
 end my_alu;
 
