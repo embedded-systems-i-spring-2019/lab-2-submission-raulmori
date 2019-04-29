@@ -67,7 +67,7 @@ architecture Behavioral of alu_tester is         --We will use structural behavi
                                     tempB <= sw;                    --report "in B";
                                 end if;
                                  -----------------
-                                if(db_btn(3) = '1') then             --reset values   
+                                if(db_btn(3) = '1') then             --reset values. This is Mainly used to Starts setting up everything all over Again. 
                                     tempA <= "0000";                --This just sets all the inputs to "0"
                                     tempB <= "0000";
                                     tempOP <= "0000";
