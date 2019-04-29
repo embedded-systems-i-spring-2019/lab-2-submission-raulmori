@@ -82,8 +82,8 @@ architecture Behavioral of alu_tester is         --We will use structural behavi
   
                     --opcode                
                     Button2: debounce port map(clk => clk,      --We just connect the component-entity with the corresponding temporary signal (small to big)
-                                               btn => btn(2),
-                                               dbnc => db_btn(2));
+                                               btn => btn(2),       --Here we combine the "BUTTON" from "DEBOUNCE" to the BUTTON of the Top_Design's ENTITY
+                                               dbnc => db_btn(2));  --Here we combine the "OUTPUT" of DEBOUNCE to the TEMPORARY "OUTPUT" of this Top_Design
                                          
                      --A                
                     Button1: debounce port map(clk => clk,
