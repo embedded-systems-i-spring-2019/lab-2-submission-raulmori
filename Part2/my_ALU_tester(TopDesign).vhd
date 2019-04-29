@@ -1,4 +1,12 @@
 --Basically what we do here is we make a Main circuit, and we create a "structure model" then we use port-maps to connect four single "ALU's"
+--Remember the way this works is, we will first set up the "SWITCHES" for out 4-bit number then press the "BUTTON" for "A"
+--We will then do the same for "B"
+--we will then set up the "OPCODE" code using the "SWITCHES" then we will press the "OPCODE" button which will give us the final OUTPUT results on the "LED's
+
+
+--Remember the same registers work for both the "BUTTONS" and "SWITCHES"
+--In here we assign the "OUTPUTS" of the ALU to the "LED's"
+--Also, here we assign the 
 
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
@@ -104,7 +112,5 @@ architecture Behavioral of alu_tester is         --We will use structural behavi
                     ALU: my_alu port map(A => inA,              --We just connect the component-entity with the corresponding temporary signal (small to big)
                                          B => inB,
                                          Opcode => OP,
-                                         output => led);
-                                         
-   
+                                         output => led);                                       
 end Behavioral;
